@@ -1,0 +1,6 @@
+{
+  "name": "CAMPUSCORE — Smart College Result & AI Report Card Portal",
+  "description": "Centralized college result management platform with role-based portals for HODs, Professors, and Students, synchronized result publication, QR invitations, Excel import, PDF report cards, audit trails, and Gemini AI academic insights.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

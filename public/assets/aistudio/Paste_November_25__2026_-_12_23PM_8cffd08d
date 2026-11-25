@@ -1,0 +1,1070 @@
+# MASTER BUILD PROMPT — SMART COLLEGE RESULT & AI REPORT CARD PORTAL
+
+You are a senior full-stack software engineering team consisting of a UI/UX designer, frontend engineer, backend engineer, database architect, security engineer and QA engineer.
+
+Your task is to DESIGN, DEVELOP AND IMPLEMENT a complete, functional, responsive web application named:
+
+**CAMPUSCORE — Smart College Result & AI Report Card Portal**
+
+This is a real college result management system, not a static website, landing-page mockup or frontend-only demonstration.
+
+Build the entire application in one implementation. Do not stop after creating the homepage. Every dashboard, navigation item, form, button, modal, table, workflow and feature must be implemented and connected to working application logic.
+
+Do not leave TODO comments, placeholder buttons, fake navigation, unfinished pages or non-functional interactions.
+
+---
+
+# 1. PROJECT OBJECTIVE
+
+The application solves the following problems in college result management:
+
+1. College mid-semester results are currently shared through public Excel sheets or WhatsApp groups.
+2. Students can see other students' marks, creating unnecessary comparison and privacy problems.
+3. Different professors submit marks on different dates, resulting in incomplete and fragmented results.
+4. Previous semester results are difficult to maintain and retrieve.
+5. There is no centralized system for report cards, performance analysis or historical academic records.
+
+Build a centralized platform with three authenticated user roles:
+
+- HOD / Class Administrator
+- Professor / Subject Faculty
+- Student
+
+The platform must provide private student records, synchronized result publication, historical academic records, Excel imports, PDF report cards, audit logs and AI-assisted performance insights.
+
+# 2. TECHNOLOGY STACK
+
+Use the following architecture:
+
+FRONTEND:
+- React.js with Vite
+- TypeScript
+- Tailwind CSS
+- Lucide React icons
+- React Router
+- React Hook Form
+- Zod validation
+- TanStack Query for server state
+
+BACKEND:
+- Node.js
+- Express.js
+- TypeScript
+- REST API architecture
+- JWT authentication
+- bcryptjs password hashing
+
+DATABASE:
+- MySQL
+- Prisma ORM
+
+ADDITIONAL LIBRARIES:
+- qrcode.react for QR generation
+- html5-qrcode for QR scanning
+- SheetJS (xlsx) for Excel import/export
+- jsPDF and html2canvas for PDF generation
+- Recharts for performance charts
+- date-fns for date handling
+
+AI:
+- Google Gemini API for report card remarks and performance insights.
+- All Gemini API calls must happen through the backend.
+- Never expose API keys in frontend code.
+
+If the environment does not provide MySQL automatically, create a complete database setup using Prisma migrations and Docker Compose. Do not silently replace the requested database with localStorage.
+
+Provide an environment configuration example.
+
+# 3. DESIGN SYSTEM — VERY IMPORTANT
+
+The website must look like a premium, professionally designed modern SaaS application.
+
+Design inspiration:
+- Linear
+- Vercel Dashboard
+- Notion
+- Modern university management platforms
+- Premium academic analytics software
+
+DO NOT create a generic AI-generated dashboard.
+
+## Color palette
+
+Use a balanced, elegant light interface.
+
+The background must NOT be pure white everywhere and must NOT be dark.
+
+Use:
+
+- Main background: #F3F4F8
+- Sidebar background: #E9EAF2
+- Main cards: #FFFFFF
+- Primary indigo: #5146D8
+- Secondary purple: #7966E8
+- Accent blue: #4387D9
+- Soft lavender: #EFECFF
+- Success green: #21966B
+- Warning amber: #D99A32
+- Error red: #D95364
+- Primary text: #20243A
+- Secondary text: #777D91
+- Borders: #E4E5ED
+
+Use gradients sparingly.
+
+Use subtle shadows, thin borders, soft rounded corners and carefully controlled whitespace.
+
+## Typography
+
+Use:
+- Inter for general interface typography.
+- Manrope for selected headings.
+- Consistent font weights.
+- Clear visual hierarchy.
+- Readable numerical typography for marks and statistics.
+
+## UI characteristics
+
+- Rounded cards with 12–16px radius.
+- Consistent spacing.
+- Smooth hover transitions.
+- Subtle entrance animations.
+- Professional loading skeletons.
+- Toast notifications.
+- Confirmation dialogs.
+- Responsive tables.
+- Empty states with useful actions.
+- Clear success, error and pending indicators.
+
+Avoid:
+- Completely dark backgrounds.
+- Excessively white layouts.
+- Excessive gradients.
+- Giant headings.
+- Unnecessary decorative elements.
+- Random colors.
+- Emoji as substitutes for professional icons.
+- Excessive animations.
+- Cluttered dashboards.
+
+Use Lucide icons consistently.
+
+The application should look like an actual commercial product.
+
+# 4. LANDING PAGE
+
+Create a premium landing page with:
+
+- CAMPUSCORE logo and branding.
+- Navigation bar.
+- Short product description.
+- Main hero section.
+- Three prominent role-selection cards.
+- Subtle illustrations or appropriate academic graphics.
+- Feature overview.
+- Privacy and security highlights.
+- Footer.
+
+Main heading:
+
+"Your Academic Journey. One Secure Platform."
+
+Subtitle:
+
+"Manage results, access report cards and understand academic performance — all in one intelligent platform."
+
+## Three role cards
+
+Card 1: HOD / Administrator
+Icon: shield-user
+Description: Manage classes, subjects, faculty and result publication.
+
+Card 2: Professor
+Icon: book-open-check
+Description: Submit marks, manage subject records and generate academic remarks.
+
+Card 3: Student
+Icon: graduation-cap
+Description: Access private report cards and track academic progress.
+
+Each card must open the correct role-specific login page.
+
+# 5. AUTHENTICATION AND ACCESS CONTROL
+
+Implement separate authentication flows for all three roles.
+
+## HOD login
+
+- Institutional HOD ID or email.
+- Password.
+- Password visibility toggle.
+- Form validation.
+- Secure authentication.
+- Logout.
+
+HOD accounts must be provisioned securely, not created through unrestricted public registration.
+
+## Professor login
+
+- Faculty ID or institutional email.
+- Password.
+- Secure authentication.
+- Professor dashboard.
+
+Professors must only access classes and subjects for which they have been authorized.
+
+## Student login
+
+- Enrollment number.
+- Password or verified institutional credential.
+- Secure authentication.
+- Student dashboard.
+
+IMPORTANT:
+
+Do not treat an enrollment number alone as secure authentication.
+
+New students must use an invitation and approved enrollment process to establish their credentials.
+
+Implement:
+- JWT-based authentication.
+- Password hashing using bcryptjs.
+- Protected routes.
+- Role-based authorization.
+- Session expiration.
+- Secure logout.
+- Backend authorization checks.
+- Rate limiting on authentication endpoints.
+
+Never rely only on frontend route protection.
+
+# 6. HOD / ADMINISTRATOR DASHBOARD
+
+Create a separate dashboard layout with:
+
+- Collapsible sidebar.
+- Top navigation.
+- Notification icon.
+- Profile menu.
+- Dashboard statistics.
+- Recent activity.
+- Quick actions.
+
+## Dashboard statistics
+
+Display:
+- Total classes.
+- Total registered students.
+- Total professors.
+- Subjects pending submission.
+- Results published.
+- Pending approval requests.
+
+Use real database values, not hardcoded statistics.
+
+## Sidebar navigation
+
+1. Overview
+2. Create New Class
+3. Manage Classes
+4. Generate QR & Invite Links
+5. Subject Permissions
+6. Student Enrollment Requests
+7. Subject Lock Tracker
+8. Publish Results
+9. Audit Logs
+10. Notifications
+11. Profile
+12. Logout
+
+## A. Create New Class
+
+Implement a complete form.
+
+Fields:
+- Department.
+- Academic year.
+- Semester.
+- Division.
+- Batch.
+- Class name.
+- Enrollment list.
+- Subject list.
+
+Each subject must include:
+- Subject code.
+- Subject name.
+- Maximum marks.
+- Assessment type.
+- Assigned professor, if known.
+
+Allow HOD to:
+- Add subjects.
+- Remove subjects before result publication.
+- Add students individually.
+- Import student enrollment numbers from Excel or CSV.
+- Validate duplicate enrollment numbers.
+- Review the class before creation.
+
+Generate:
+- Unique class ID.
+- Secure invitation token.
+- QR code.
+- Invitation URL.
+
+QR and invitation links must not expose private student information.
+
+## B. QR Code & Invitation Management
+
+Display:
+- QR code.
+- Copy invitation link.
+- Download QR code.
+- Expiry date.
+- Active/inactive status.
+
+Allow HOD to revoke and regenerate invitations.
+
+## C. Subject Permissions
+
+Professors can request access to a class and a particular subject.
+
+Display a request management table:
+
+- Professor name.
+- Faculty ID.
+- Requested class.
+- Requested subject.
+- Request date.
+- Status.
+- Approve button.
+- Reject button.
+
+Only approved professors can access that subject's marks.
+
+## D. Student Enrollment Requests
+
+When a student joins through an invitation:
+
+- Validate the invitation.
+- Validate the enrollment number against the class enrollment list.
+- Create a pending enrollment request.
+- Allow HOD to approve or reject it.
+- Prevent duplicate enrollment requests.
+
+Show request status and timestamps.
+
+## E. Subject Lock Status Tracker
+
+Display all subjects in a class.
+
+For each subject, show:
+
+- Subject name.
+- Subject code.
+- Assigned professor.
+- Total students.
+- Marks submitted.
+- Submission status.
+- Last updated timestamp.
+
+Status indicators:
+
+- Not Started
+- In Progress
+- Submitted
+- Locked
+
+Show a visual progress bar indicating how many subjects have been locked.
+
+## F. Verify & Publish Final Result
+
+This is the most important HOD feature.
+
+Implement a proper result publication workflow.
+
+Rules:
+
+1. Every registered subject must have a complete marks submission.
+2. Every assigned professor must lock their subject.
+3. The HOD must verify the complete result.
+4. The HOD can publish the result only when all required subjects are locked.
+5. Students must never see partial results.
+6. Publication must happen atomically.
+7. A published result must have a publication timestamp and version.
+
+If even one subject is pending, display:
+
+"Awaiting all subject submissions."
+
+Disable the publish action.
+
+Once all subjects are locked, show:
+
+"All subjects submitted. Ready for verification."
+
+The HOD can review the combined report before clicking:
+
+"VERIFY & PUBLISH RESULT"
+
+After publication, all eligible students must receive access to their complete report cards simultaneously.
+
+Use database transactions to prevent partial publication.
+
+## G. Audit Logs
+
+Record:
+- Marks created.
+- Marks updated.
+- Previous marks.
+- New marks.
+- Professor responsible.
+- Date and time.
+- Subject.
+- Student enrollment number.
+- Lock events.
+- Result publication events.
+
+Audit records must be append-only and must not be editable through ordinary dashboard operations.
+
+Provide filters and search.
+
+# 7. PROFESSOR DASHBOARD
+
+Create a dedicated faculty workspace.
+
+Dashboard statistics:
+- Assigned classes.
+- Assigned subjects.
+- Pending submissions.
+- Locked submissions.
+
+Sidebar:
+
+1. Overview
+2. Join Class
+3. My Classes
+4. Previous Classes Archive
+5. Enter Marks
+6. Excel Import
+7. AI Auto-Remarks
+8. Subject Lock & Submit
+9. Notifications
+10. Profile
+11. Logout
+
+## A. Join Class
+
+Allow professors to:
+
+- Scan class QR codes using the device camera.
+- Paste an invitation link.
+- Enter an invitation code.
+- Select their requested subject.
+- Submit an access request.
+
+Show approval status.
+
+## B. My Classes
+
+Display assigned classes as professional cards.
+
+Each card contains:
+- Department.
+- Semester.
+- Division.
+- Academic year.
+- Subject.
+- Number of students.
+- Submission status.
+
+## C. Previous Classes Archive
+
+Display previous semesters and classes.
+
+Allow authorized professors to inspect their historical subject records.
+
+Historical records must be read-only after archival unless an explicitly authorized correction process is used.
+
+## D. Marks Entry
+
+Create a high-quality, editable marks-entry interface.
+
+Table columns:
+
+- Serial number.
+- Enrollment number.
+- Student name.
+- Maximum marks.
+- Obtained marks.
+- Status.
+
+Requirements:
+
+- Inline editing.
+- Numeric validation.
+- Prevent negative marks.
+- Prevent marks exceeding maximum marks.
+- Save changes.
+- Autosave with clear saving/saved indicators.
+- Search students.
+- Filter by enrollment number.
+- Sort by marks.
+- Pagination where needed.
+
+Display a fixed topper widget in the top-right area.
+
+Topper widget:
+- Student name.
+- Enrollment number.
+- Highest marks.
+
+Calculate topper dynamically using the currently saved marks.
+
+Handle ties correctly by showing all tied toppers or an explicit tie count.
+
+## E. Excel Import
+
+Implement real Excel importing using SheetJS.
+
+Features:
+- Upload XLSX and XLS files.
+- Read worksheet contents.
+- Preview imported data.
+- Map spreadsheet columns to enrollment number, student name and marks.
+- Validate enrollment numbers.
+- Detect duplicates.
+- Detect missing students.
+- Detect invalid marks.
+- Show row-specific errors.
+- Allow the professor to correct mappings.
+- Confirm import before saving.
+
+Never silently overwrite existing marks.
+
+Provide a clear conflict resolution screen.
+
+Also allow downloading a standard marks-entry Excel template.
+
+## F. AI Auto-Remarks
+
+Integrate Google Gemini API through a secure backend endpoint.
+
+Generate individual academic remarks based on:
+- Student marks.
+- Maximum marks.
+- Subject performance.
+- Available historical performance.
+- Improvement or decline.
+
+Example:
+
+"Demonstrates a good understanding of fundamental concepts, with scope for improvement in advanced problem-solving."
+
+Remarks must:
+- Be professional.
+- Be constructive.
+- Avoid insulting or demotivating students.
+- Never invent student characteristics.
+- Be based only on available academic information.
+- Avoid claiming behavioral observations without actual behavioral data.
+
+Provide:
+- Generate remarks.
+- Regenerate remark.
+- Edit remark.
+- Save remark.
+
+If Gemini is unavailable, show a clear error and allow manual remarks. Do not pretend that AI generation succeeded.
+
+## G. Lock & Submit
+
+Before locking:
+
+- Validate all students' marks.
+- Check missing entries.
+- Show a final review.
+- Ask for confirmation.
+
+After locking:
+- Prevent normal editing.
+- Save a timestamp.
+- Record professor identity.
+- Update HOD submission tracker.
+
+If a correction is necessary, require an authorized HOD-controlled unlock or correction workflow and preserve the original values in the audit trail.
+
+# 8. STUDENT DASHBOARD
+
+Create a clean, private, student-focused dashboard.
+
+Sidebar:
+
+1. Overview
+2. My Report Cards
+3. Previous Semesters
+4. Join New Class
+5. Result Status
+6. AI Performance Insights
+7. Notifications
+8. Profile
+9. Logout
+
+## Dashboard overview
+
+Display:
+- Student name.
+- Enrollment number.
+- Department.
+- Current semester.
+- Latest published result status.
+- Latest available academic performance.
+- Historical performance chart.
+
+Do not display other students' marks.
+
+## A. Join New Class
+
+Allow students to:
+- Scan QR code.
+- Paste invitation link.
+- Enter invitation code.
+
+Validate enrollment number against the class roster.
+
+Show:
+- Pending verification.
+- Approved.
+- Rejected.
+- Already enrolled.
+
+## B. Result Status
+
+Before all subjects are locked and the result is published, show:
+
+"AWAITING ALL SUBJECTS"
+
+Display:
+- Subject submission progress, if the student is authorized to see the progress.
+- Overall publication status.
+- Expected or actual publication timestamp where available.
+
+IMPORTANT: Do not reveal individual subject marks, averages, grades, topper information or partial report card data before publication.
+
+## C. Official Report Card
+
+After publication, show a professional digital report card.
+
+Header:
+- College name.
+- Department.
+- Academic year.
+- Semester.
+- Student name.
+- Enrollment number.
+
+Subject table:
+
+| Subject Code | Subject Name | Maximum Marks | Obtained Marks | Percentage |
+|---|---|---:|---:|---:|
+
+Summary:
+- Total maximum marks.
+- Total obtained marks.
+- Overall percentage.
+- Grade or result status, using configured institutional rules.
+- AI academic remarks.
+
+Display behavioral evaluation only when actual authorized evaluation data exists.
+
+The report card must be printable and professionally formatted.
+
+## D. PDF Download
+
+Implement actual PDF generation.
+
+Requirements:
+- Proper page layout.
+- College branding.
+- Student details.
+- All subject marks.
+- Overall summary.
+- Remarks.
+- Publication date.
+- Unique report card ID.
+- Print-friendly formatting.
+
+Do not generate an empty or placeholder PDF.
+
+## E. Previous Semesters
+
+Display previous published report cards as semester cards.
+
+Each card should contain:
+- Academic year.
+- Semester.
+- Department.
+- Overall percentage.
+- Result status.
+- View report card.
+- Download PDF.
+
+Students must retain access to their authorized historical records even after moving to another semester.
+
+## F. AI Performance Insights
+
+Integrate Gemini-based academic analysis.
+
+Analyze:
+- Historical subject-wise performance.
+- Strongest subjects.
+- Weakest subjects.
+- Improving subjects.
+- Declining subjects.
+- Overall percentage trends.
+- Target marks required for a chosen future goal.
+
+Display:
+- Performance charts.
+- Subject comparison.
+- Improvement indicators.
+- Weak-area identification.
+- Suggested academic focus areas.
+- Next-semester target scores.
+
+All insights must be calculated from real available marks.
+
+Clearly distinguish mathematical calculations from AI-generated suggestions.
+
+Never fabricate historical data.
+
+# 9. COMMON FEATURES
+
+All dashboards must have:
+
+## Notifications
+
+Implement a functional notification system for:
+- Professor access approvals.
+- Student enrollment approvals.
+- Marks submission.
+- Subject lock events.
+- Result publication.
+- HOD reminders.
+
+Include:
+- Unread count.
+- Mark as read.
+- Mark all as read.
+- Notification history.
+
+## Profile
+
+Show role-specific profile information.
+
+Allow permitted profile updates.
+
+## Logout
+
+Implement secure logout and redirect to the landing page.
+
+## Search and filtering
+
+Where appropriate, implement:
+- Search.
+- Sorting.
+- Filtering.
+- Pagination.
+- Clear filters.
+
+# 10. DATABASE DESIGN
+
+Create a normalized relational database using Prisma.
+
+Include appropriate models for:
+
+- User
+- HODProfile
+- ProfessorProfile
+- StudentProfile
+- Department
+- Class
+- Subject
+- ClassStudent
+- ProfessorSubjectRequest
+- StudentEnrollmentRequest
+- Invitation
+- Marks
+- SubjectSubmission
+- ResultPublication
+- ReportCard
+- AcademicRemark
+- BehavioralEvaluation
+- Notification
+- AuditLog
+
+Use:
+- Proper primary keys.
+- Foreign keys.
+- Unique constraints.
+- Indexes.
+- Created and updated timestamps.
+- Appropriate relations.
+
+A student must not be able to access another student's report card by changing an ID in the URL or API request.
+
+Implement authorization at the database query/API level.
+
+# 11. CRITICAL BUSINESS LOGIC
+
+These rules are mandatory.
+
+RULE 1 — PRIVACY
+
+Students can only access their own marks and report cards.
+
+RULE 2 — CLASS VALIDATION
+
+Enrollment numbers must exist in the HOD-uploaded class roster before enrollment approval.
+
+RULE 3 — PROFESSOR PERMISSIONS
+
+A professor can only modify subjects assigned to them and authorized by the HOD.
+
+RULE 4 — MARKS VALIDATION
+
+Obtained marks must be between zero and the configured maximum marks.
+
+RULE 5 — LOCKING
+
+A locked subject cannot be edited through normal professor operations.
+
+RULE 6 — SYNCHRONIZED PUBLICATION
+
+No student can access partial subject results.
+
+All required subject submissions must be locked before publication.
+
+RULE 7 — ATOMIC RESULT RELEASE
+
+Publication must be a single database transaction.
+
+RULE 8 — AUDITABILITY
+
+Every marks change and administrative correction must be traceable.
+
+RULE 9 — HISTORICAL RECORDS
+
+Published historical results must remain accessible and must not be silently overwritten.
+
+RULE 10 — AUTHORIZATION
+
+Every sensitive operation must be validated by the backend, not merely hidden in the UI.
+
+# 12. APPLICATION STRUCTURE
+
+Use a maintainable project structure.
+
+Separate:
+
+- Frontend components.
+- Pages.
+- Layouts.
+- Hooks.
+- API services.
+- Authentication context.
+- Types.
+- Validation schemas.
+- Backend routes.
+- Controllers.
+- Middleware.
+- Services.
+- Database schema.
+- Utilities.
+
+Use reusable components for:
+- Sidebar.
+- Topbar.
+- Statistics cards.
+- Data tables.
+- Modals.
+- Forms.
+- Status badges.
+- Notifications.
+- Charts.
+- Report cards.
+
+Do not put the entire application into one giant React component.
+
+# 13. RESPONSIVENESS
+
+The application must work on:
+
+- Desktop.
+- Laptop.
+- Tablet.
+- Android mobile browsers.
+
+Desktop:
+- Full sidebar.
+- Multi-column dashboard.
+- Spacious data tables.
+
+Mobile:
+- Collapsible navigation.
+- Responsive cards.
+- Properly scrollable tables.
+- Touch-friendly buttons.
+- No horizontal page overflow.
+- Mobile-compatible QR scanner.
+
+# 14. DEMO DATA
+
+Seed the database with clearly labeled demonstration data.
+
+Use a fictional institution:
+
+Gujarat Institute of Technology — DEMO
+
+Create:
+- One HOD account.
+- Three professor accounts.
+- One sample department.
+- One sample class.
+- Three sample subjects.
+- Ten sample students.
+- Sample marks.
+- Sample historical semester data.
+
+Use a clearly identified demonstration environment.
+
+Provide the demo login credentials in a dedicated README section.
+
+Do not use real personal data.
+
+The seeded data should demonstrate:
+- A subject pending.
+- A subject in progress.
+- A locked subject.
+- A fully publishable class after completing all submissions.
+- A previously published report card.
+
+# 15. ERROR HANDLING AND SECURITY
+
+Implement:
+
+- Centralized API error handling.
+- Form validation.
+- Database error handling.
+- Loading states.
+- Empty states.
+- Retry options.
+- Unauthorized access handling.
+- Expired invitation handling.
+- Expired session handling.
+- Excel parsing errors.
+- PDF generation errors.
+- Gemini API failure handling.
+
+Security requirements:
+- bcrypt password hashing.
+- JWT verification.
+- Role-based access control.
+- Input sanitization and validation.
+- Rate limiting.
+- Secure CORS configuration.
+- No secrets in frontend.
+- No unrestricted database access.
+- No public marks endpoints.
+- Ownership checks on all student report requests.
+- Server-side validation of every important operation.
+
+# 16. TESTING AND QUALITY ASSURANCE
+
+Do not consider the application complete merely because the frontend renders.
+
+Implement and run tests for critical workflows.
+
+At minimum, verify:
+
+1. HOD can create a class.
+2. HOD can upload and validate enrollment lists.
+3. QR invitation generation works.
+4. Student enrollment requests work.
+5. HOD can approve/reject requests.
+6. Professor subject requests work.
+7. Only authorized professors can enter marks.
+8. Excel import works with valid and invalid files.
+9. Marks validation works.
+10. Topper calculation updates correctly.
+11. Subject locking works.
+12. Locked subjects reject normal edits.
+13. Audit logs preserve changes.
+14. Publication is blocked if even one required subject is pending.
+15. Publication succeeds when every required subject is locked.
+16. Students cannot access partial results.
+17. Students cannot access another student's report card.
+18. PDF generation works.
+19. Previous semester records work.
+20. Logout and session expiration work.
+
+Fix errors discovered during testing.
+
+Do not claim tests passed unless they were actually executed.
+
+# 17. FINAL DELIVERY REQUIREMENTS
+
+Build the complete working application.
+
+The final result must include:
+
+1. Fully implemented landing page.
+2. Three role-specific authentication flows.
+3. HOD dashboard.
+4. Professor dashboard.
+5. Student dashboard.
+6. Functional database integration.
+7. Functional REST APIs.
+8. Real QR generation and scanning.
+9. Real Excel import.
+10. Actual PDF report card generation.
+11. Gemini API integration.
+12. Synchronized result publication.
+13. Role-based security.
+14. Audit logs.
+15. Responsive design.
+16. Demo accounts and seeded data.
+17. Setup instructions.
+18. Environment variable example.
+19. Database migration instructions.
+20. Testing instructions.
+
+## FINAL INSTRUCTIONS — READ CAREFULLY
+
+- Build the application, do not merely describe how to build it.
+- Do not stop after the landing page.
+- Do not substitute functional features with visual placeholders.
+- Do not create dead buttons.
+- Do not invent successful backend operations.
+- Do not hardcode dashboard statistics.
+- Do not use localStorage as the primary database.
+- Do not expose student data publicly.
+- Do not reveal partial results.
+- Do not skip error handling.
+- Do not leave unfinished modules.
+- Do not sacrifice backend functionality for visual appearance.
+- Keep the code modular, readable and maintainable.
+- Ensure all navigation and user interactions work.
+- Run available build checks and tests, and fix the errors you find.
+
+If a third-party service requires credentials that are unavailable, implement the complete integration, provide the required environment variable and show a clear configuration message. Never pretend an unconfigured integration is working.
+
+**PRIORITY ORDER:**
+1. Correct business logic.
+2. Data privacy and security.
+3. Complete end-to-end functionality.
+4. Database consistency.
+5. Premium UI/UX.
+6. Performance and responsiveness.
+
+Deliver a complete, coherent, working college result management platform — not a collection of disconnected screens.

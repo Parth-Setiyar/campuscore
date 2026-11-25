@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Manrope", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-canvas: #F3F4F8;
+  --color-sidebar: #E9EAF2;
+  --color-surface: #FFFFFF;
+  --color-primary: #5146D8;
+  --color-primary-hover: #4237C2;
+  --color-secondary: #7966E8;
+  --color-accent: #4387D9;
+  --color-lavender: #EFECFF;
+  --color-success: #21966B;
+  --color-warning: #D99A32;
+  --color-danger: #D95364;
+  --color-ink: #20243A;
+  --color-muted: #777D91;
+  --color-border-subtle: #E4E5ED;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background-color: var(--color-canvas);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, .font-heading {
+    font-family: var(--font-heading);
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Subtle custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D4D6E2;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8BCD0;
+}
+
+/* Print layout for official digital report card */
+@media print {
+  body {
+    background: #FFFFFF !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-report-card {
+    box-shadow: none !important;
+    border: 1px solid #D1D5DB !important;
+    margin: 0 !important;
+    padding: 24px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
